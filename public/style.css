@@ -1,0 +1,479 @@
+
+/* ========================================
+   STUDENT PROJECT TRACKER
+   Animated Blue & Violet Dashboard Theme
+   ======================================== */
+
+/* 1. Global styles */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #080d1d;
+    --card-bg: rgba(22, 32, 59, 0.88);
+    --primary: #6385ff;
+    --secondary: #a855f7;
+    --accent: #22d3ee;
+    --text: #f1f5ff;
+    --muted: #aab7d4;
+    --border: rgba(148, 163, 255, 0.2);
+    --radius: 18px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 35px 18px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(99, 102, 241, 0.19),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(168, 85, 247, 0.17),
+            transparent 35%
+        ),
+        var(--bg-dark);
+    background-size: 140% 140%;
+    animation: backgroundFlow 12s ease-in-out infinite alternate;
+}
+
+/* 2. Main dashboard */
+main {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 3. Animated header */
+header {
+    position: relative;
+    overflow: hidden;
+    padding: 38px 28px;
+    margin-bottom: 25px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    background: linear-gradient(
+        125deg,
+        #4338ca,
+        #6366f1,
+        #9333ea,
+        #2563eb
+    );
+    background-size: 300% 300%;
+    animation: gradientShift 9s ease infinite;
+    box-shadow: 0 15px 45px rgba(79, 70, 229, 0.25);
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: -100px;
+    right: -45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    animation: floatBubble 7s ease-in-out infinite;
+}
+
+header h1 {
+    position: relative;
+    margin: 0 0 12px;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+    position: relative;
+    margin: 0;
+    color: #e0e7ff;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* 4. Form and project-list panels */
+section {
+    position: relative;
+    padding: 28px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(14px);
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+section:hover {
+    border-color: rgba(99, 133, 255, 0.55);
+    box-shadow: 0 16px 42px rgba(53, 72, 160, 0.17);
+}
+
+section h2 {
+    margin: 0 0 24px;
+    font-size: 1.45rem;
+    color: #e0e7ff;
+}
+
+section h2::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 4px;
+    margin-top: 10px;
+    border-radius: 10px;
+    background: linear-gradient(
+        90deg,
+        var(--accent),
+        var(--secondary)
+    );
+}
+
+/* 5. Form layout */
+#project-form {
+    display: grid;
+    gap: 20px;
+}
+
+#project-form > div {
+    display: grid;
+    gap: 9px;
+}
+
+label {
+    color: #dbe5ff;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* 6. Inputs and dropdown */
+input,
+select {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid rgba(148, 163, 255, 0.28);
+    border-radius: 12px;
+    outline: none;
+    background: #111a31;
+    color: var(--text);
+    font: inherit;
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+input:hover,
+select:hover {
+    border-color: rgba(99, 133, 255, 0.7);
+}
+
+input:focus,
+select:focus {
+    border-color: var(--accent);
+    background: #141f3b;
+    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.13);
+    transform: translateY(-1px);
+}
+
+input::placeholder {
+    color: #8492b5;
+}
+
+select {
+    cursor: pointer;
+}
+
+/* 7. All buttons */
+button {
+    position: relative;
+    overflow: hidden;
+    min-height: 42px;
+    padding: 11px 18px;
+    border: 1px solid transparent;
+    border-radius: 11px;
+    color: white;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* 8. Add Project / Save Changes */
+#save-button {
+    margin-top: 2px;
+    background: linear-gradient(
+        110deg,
+        #4f46e5,
+        #7c3aed,
+        #2563eb
+    );
+    background-size: 200% 200%;
+    box-shadow: 0 7px 20px rgba(99, 102, 241, 0.25);
+    animation: buttonGradient 7s ease infinite;
+}
+
+#save-button:hover {
+    box-shadow: 0 10px 28px rgba(99, 102, 241, 0.45);
+}
+
+/* 9. Cancel editing button */
+#cancel-button {
+    color: #e2e8f0;
+    border-color: rgba(203, 213, 225, 0.25);
+    background: #263149;
+}
+
+#cancel-button:hover {
+    background: #35425d;
+    border-color: #94a3b8;
+}
+
+/* 10. Status / validation messages */
+#message {
+    min-height: 0;
+    margin: 16px 0 0;
+    color: #67e8f9;
+    line-height: 1.6;
+}
+
+#message:empty {
+    display: none;
+}
+
+/* 11. Empty project message */
+#empty-state {
+    padding: 22px;
+    border: 1px dashed rgba(148, 163, 255, 0.3);
+    border-radius: 12px;
+    color: var(--muted);
+    text-align: center;
+    background: rgba(15, 23, 42, 0.45);
+    line-height: 1.6;
+}
+
+#empty-state[hidden] {
+    display: none;
+}
+
+/* 12. Project list */
+#project-list {
+    display: grid;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* Each project card */
+#project-list > li,
+#project-list > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    padding: 18px;
+    border: 1px solid rgba(148, 163, 255, 0.2);
+    border-left: 4px solid var(--primary);
+    border-radius: 14px;
+    background: linear-gradient(
+        115deg,
+        rgba(30, 41, 75, 0.95),
+        rgba(25, 34, 61, 0.88)
+    );
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+    animation: cardAppear 0.4s ease both;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#project-list > li:hover,
+#project-list > div:hover {
+    transform: translateY(-3px);
+    border-left-color: var(--accent);
+    border-top-color: rgba(34, 211, 238, 0.35);
+    box-shadow: 0 12px 28px rgba(34, 211, 238, 0.09);
+}
+
+/* Project name */
+#project-list strong {
+    flex: 1 1 150px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: #f8faff;
+    font-size: 1.05rem;
+}
+
+/* Project status */
+#project-list span {
+    color: #a5f3fc;
+    font-size: 0.9rem;
+}
+
+/* 13. Edit button */
+#project-list button {
+    padding: 8px 13px;
+    font-size: 0.9rem;
+}
+
+#project-list button:first-of-type {
+    background: linear-gradient(135deg, #2563eb, #6366f1);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+#project-list button:first-of-type:hover {
+    box-shadow: 0 6px 18px rgba(59, 130, 246, 0.35);
+}
+
+/* 14. Delete button */
+#project-list button:last-of-type {
+    background: rgba(190, 24, 93, 0.16);
+    border-color: rgba(251, 113, 133, 0.3);
+    color: #fda4af;
+}
+
+#project-list button:last-of-type:hover {
+    background: #be123c;
+    border-color: #fb7185;
+    color: white;
+    box-shadow: 0 6px 18px rgba(244, 63, 94, 0.25);
+}
+
+/* 15. Animated background */
+@keyframes backgroundFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+/* 16. Header color animation */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 17. Button color animation */
+@keyframes buttonGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 18. Floating decorative bubble */
+@keyframes floatBubble {
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(-20px, 25px) scale(1.15);
+    }
+}
+
+/* 19. Project card entrance */
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 20. Mobile-friendly layout */
+@media (max-width: 600px) {
+    body {
+        padding: 18px 12px;
+    }
+
+    header {
+        padding: 30px 18px;
+        border-radius: 18px;
+    }
+
+    section {
+        padding: 21px 17px;
+    }
+
+    #project-list > li,
+    #project-list > div {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    #project-list strong {
+        flex-basis: 100%;
+    }
+
+    #project-list span {
+        flex-basis: 100%;
+    }
+}
+
+/* 21. Respect reduced-motion accessibility settings */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
